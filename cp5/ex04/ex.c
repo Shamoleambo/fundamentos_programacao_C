@@ -11,50 +11,46 @@
  * 	c) qual é a média de acidentes de trânsito nas cidades com menos de 2.000 veículos de passeio.  */
 
 int main() {
-	int cod_cid_1, qtde_vei_pass_1, acidentes_1;
-	int cod_cid_2, qtde_vei_pass_2, acidentes_2;
-	int cod_cid_3, qtde_vei_pass_3, acidentes_3;
-	int cod_cid_4, qtde_vei_pass_4, acidentes_4;
-	int cod_cid_5, qtde_vei_pass_5, acidentes_5;
+	char cod_cid;
+	int menor_ind_ac_tran, qtde_cid_menos_2000_vei = 0,  total_veiculo = 0, total_ac_menos_2000_vei = 0;
+	double med_vei_5_cid, med_ac_menos_2000;
 
-	//Leitura
-	printf("Forneça o código da cidade %d: ", 1);
-	scanf("%d%*c", &cod_ci_1);
-	printf("Forneça a quantidade de veículos de passeio da cidade %d: ", 1);
-	scanf("%d%*c", &qtde_vei_pass_1);
-	printf("Forneça a quantidade de acidentes com vítimas da cidade %d: ", 1);
-	scanf("%d%*c", &acidentes_1);
+	for(int i = 0; i < 5; i++){
+		int veiculos_cidade;
+		int acidentes;
+		char cod;
 
+		printf("Forneça o código da cidade: ");
+		scanf("%c%*c", &cod);
+		printf("Forneça o número de veículos de passeio dessa cidade: ");
+		scanf("%d%*c", &veiculos_cidade);
+		printf("Forneça o número de acidentes de trânsito com vítimas: ");
+		scanf("%d%*c", &acidentes);
 
-	printf("Forneça o código da cidade %d: ", 2);
-	scanf("%d%*c", &cod_ci_2);
-	printf("Forneça a quantidade de veículos de passeio da cidade %d: ", 2);
-	scanf("%d%*c", &qtde_vei_pass_2);
-	printf("Forneça a quantidade de acidentes com vítimas da cidade %d: ", 2);
-	scanf("%d%*c", &acidentes_2);
+		if(i == 0){
+			menor_ind_ac_tran = acidentes;
+			cod_cid = cod;
+		} else {
+			if(menor_ind_ac_tran > acidentes) {
+				menor_ind_ac_tran = acidentes;
+				cod_cid = cod;
+			}
+		}
 
+		total_veiculo += veiculos_cidade;
+		
+		if(veiculos_cidade < 2000) {
+			total_ac_menos_2000_vei += acidentes;
+			qtde_cid_menos_2000_vei += 1;
+		}
+		printf("\n\n");
+	}
 
-	printf("Forneça o código da cidade %d: ", 3);
-	scanf("%d%*c", &cod_ci_3);
-	printf("Forneça a quantidade de veículos de passeio da cidade %d: ", 3);
-	scanf("%d%*c", &qtde_vei_pass_3);
-	printf("Forneça a quantidade de acidentes com vítimas da cidade %d: ", 3);
-	scanf("%d%*c", &acidentes_3);
+	med_vei_5_cid = total_veiculo / 5;
+	med_ac_menos_2000 = (double) total_ac_menos_2000_vei / qtde_cid_menos_2000_vei;
 
-
-	printf("Forneça o código da cidade %d: ", 4);
-	scanf("%d%*c", &cod_ci_4);
-	printf("Forneça a quantidade de veículos de passeio da cidade %d: ", 4);
-	scanf("%d%*c", &qtde_vei_pass_4);
-	printf("Forneça a quantidade de acidentes com vítimas da cidade %d: ", 4);
-	scanf("%d%*c", &acidentes_4);
-
-
-	printf("Forneça o código da cidade %d: ", 5);
-	scanf("%d%*c", &cod_ci_5);
-	printf("Forneça a quantidade de veículos de passeio da cidade %d: ", 5);
-	scanf("%d%*c", &qtde_vei_pass_5);
-	printf("Forneça a quantidade de acidentes com vítimas da cidade %d: ", 5);
-	scanf("%d%*c", &acidentes_5);
+	printf("a) O menor índice corresponde a cidade com o código %c e é: %d\n\n", cod_cid, menor_ind_ac_tran);
+	printf("b) A média de veículos das cinco cidades é: %.3lf\n\n", med_vei_5_cid);
+	printf("c) A média de acidentes de trânsito nas cidades com menos de 2000 veículos de passeio é: %.3lf\n\n", med_ac_menos_2000);
 	return 0;
 }
