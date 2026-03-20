@@ -32,14 +32,32 @@ int main() {
 			cont_XY++;
 		}
 	}
+	
+	//diferença de X e Y:
+	int cont_XminusY = 0;
+	for(int i = 0 ; i < v_size; i++) {
+		bool is_not_in_Y = false;
+		for(int j = 0; j < v_size; j++) {
+			if(j == v_size - 1 && X[i] != Y[j]) is_not_in_Y = true;
+			if(X[i] == Y[j]) break;
+		}
+		bool add_to_XminusY = false;
+		for(int j = 0; j < v_size; j++ ){
+			if(j == v_size - 1 && X[i] != XminusY[j]) add_to_XminusY = true;
+			if(X[i] == XminusY[j]) break;
+		}
 
-	//apague o de baixo, fiz somente para testar antes de dar commit
-	//
-	printf("\n\n");
-	for(int i = 0; i < 2 * v_size; i++) {
-		printf("\nposição %d - valor %d", i, XY[i]);
+		if(is_not_in_Y && add_to_XminusY) {
+			XminusY[cont_XminusY] = X[i];
+			cont_XminusY++;
+		}	
 	}
-	printf("\n\n");
+	
+	printf("\n");
+	for(int i = 0; i < v_size; i++) {
+		printf("XminusY[%d] = %d\nd", i, XminusY[i]);
+	}
+
 
 	return 0;
 }
